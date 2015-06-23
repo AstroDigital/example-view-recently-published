@@ -8,5 +8,5 @@ This example illustrates interacting with several Astro Digital API endpoints an
 
 ## Running
 
-The webapp is written in only HTML, CSS and JS and does not require the installation of any special frameworks. As such, you can run it with any static server setup you want, see [here](https://gist.github.com/willurd/5720255) for a whole bunch of examples.
+The webapp is written in only HTML, CSS and JS and does not require the installation of any special frameworks. As such, you can run it with any static server setup you want, see [here](https://gist.github.com/willurd/5720255) for a whole bunch of static server one-liners examples that will help you get up and running.
 
