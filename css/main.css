@@ -1,0 +1,50 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  background: #3E5972;
+}
+
+.logo {
+  float: left;
+  padding: 12px;
+}
+
+.logo img {
+  height: 26px;
+  width: auto;
+}
+
+#map {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+}
+
+.info-box {
+  position: absolute;
+  opacity: 0.6;
+  color: white;
+  background-color: black;
+  margin: 12px;
+  padding: 12px;
+  min-width: 300px;
+  top: 50px;
+  z-index: 100000;
+}
+
+.info-box div {
+  margin-bottom: 12px;
+}
+
+.info-box div:last-of-type {
+  margin-bottom: 0;
+}

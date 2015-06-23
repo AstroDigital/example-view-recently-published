@@ -1,0 +1,18 @@
+branches:
+  only:
+    - master
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+deploy:
+  - provider: s3
+    access_key_id: AKIAJBMJK3MKLR4ZS5XQ
+    secret_access_key:
+      secure: ZrqLKPg0c3qWdVbTM0qG4Zpea4oeVd5myvUq/j9Z5PsBdLPKUNWqJbzg+jP+ODunUqtaqcA8PexP85e6iL3tywd11FiFLsDfTRRctcKo1PtpyGdm6ZmZxgqjOf4bOi0Jid4QcWbdc8qrLWnn+jAh0zoLL2nBhwS/Yu8E7qCBpM684vVeF6gAypfNZjA+J2fd2knWtfycvYOullggCsVfxu/hPqKxZu3Gtv136rSdHWyr/Nw5GzlU/GF/1jNGCV2tY4BA1Hw4F0lJfPcD5aj0b7IG2ftthAKcOHXnQbJa3IJZgk5z9c4hM/c7kyOgVK0wJTsjdTT1pgIRv0skaybSWNDHbuy+fA74yjXBGm9SQnXUssojVrEth/i3sHvwMVLBp3xoScBjHQEuj1j2ubg41LiIsG6Nxwpd2tr1JJSQwWtWwOEAJa3qwhIDUI4UwiVoBvg5CfN/B7lyE0qdE7DYE1bvOKxMKuTRJ+91B/VyNp51iZNtLC10i6CNBFksmHc4U232gteWeptWI7ZJqS0F9Vh32J4QEbb7QHORnppd6zMOg9FOi1WF9srDwqXalqpNvLGurQH5cjQOJHsstsL0O3IUOgOjL2LhV/C4cdG3HF/dxt9zQBGFF00q2+g2JUSu8Oqo9kWklzrx6te/j/beLRAybwBrtdd6MSSEacmSk5Y=
+    bucket: example-view-recently-published
+    region: us-west-1
+    acl: public_read
+    on:
+      repo: AstroDigital/example-view-recently-published
