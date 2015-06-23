@@ -2,9 +2,17 @@ branches:
   only:
     - master
 
+language: node_js
+node_js:
+  - '0.12'
+
 env:
   global:
     - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+
+install: echo nothing to install
+
+script: echo nothing to do here
 
 deploy:
   - provider: s3
