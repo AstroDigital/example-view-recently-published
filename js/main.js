@@ -39,8 +39,6 @@ var map;
 var currentScene;
 var currentScenes = [];
 var sceneIndex = 0;
-var methods;
-var satellites;
 
 /**
  * Calls out to the API to get bounds and center for a given scene and adds
@@ -67,7 +65,7 @@ var getSceneBounds = function (scene, cb) {
     scene.sceneCenterLatitude = data.sceneCenterLatitude;
     cb();
   };
-  var searchURL = baseURL + 'search?search=' + scene.scene_id;
+  var searchURL = baseURL + 'search/?search=' + scene.scene_id;
   request.open('GET', searchURL, true);
   request.send();
 };
@@ -160,70 +158,14 @@ var displayScene = function (scene) {
 };
 
 /**
- * Gets list of methods supported by the Astro Digital platform.
- * @param {function} callback - A callback to denote completion.
- */
-var getMethods = function (cb) {
-  var methodsURL = baseURL + 'methods';
-  var request = new XMLHttpRequest();
-  request.onload = function () {
-    var data = JSON.parse(this.responseText);
-    methods = data.results;
-    cb();
-  };
-  request.open('GET', methodsURL, true);
-  request.send();
-};
-
-/**
- * A simple helper to get the method object by its id.
- * @param {int} id - a valid method id.
- */
-var getMethodByID = function (id) {
-  for (var i = 0; i < methods.length; i++) {
-    if (methods[i].id === id) {
-      return methods[i];
-    }
-  }
-};
-
-/**
- * Gets list of satellites supported by the Astro Digital platform.
- * @param {function} callback - A callback to denote completion.
- */
-var getSatellites = function (cb) {
-  var satellitesURL = baseURL + 'satellites';
-  var request = new XMLHttpRequest();
-  request.onload = function () {
-    var data = JSON.parse(this.responseText);
-    satellites = data.results;
-    cb();
-  };
-  request.open('GET', satellitesURL, true);
-  request.send();
-};
-
-/**
- * A simple helper to get the satellite object by its id.
- * @param {int} id - a valid satellite id.
- */
-var getSatelliteByID = function (id) {
-  for (var i = 0; i < satellites.length; i++) {
-    if (satellites[i].id === id) {
-      return satellites[i];
-    }
-  }
-};
-
-/**
  * Update the information in the on-screen info box.
  * @param {object} scene - a valid scene object to display info for.
  */
 var setInfo = function (scene) {
   document.getElementById('location').innerHTML = scene.sceneCenterLongitude +
     ', ' + scene.sceneCenterLatitude;
-  document.getElementById('satellite').innerHTML = getSatelliteByID(scene.satellite).name;
-  document.getElementById('method').innerHTML = getMethodByID(scene.process_method).name;
+  document.getElementById('satellite').innerHTML = scene.satellite;
+  document.getElementById('method').innerHTML = scene.process_method;
 };
 
 /**
@@ -255,17 +197,11 @@ var initMap = function () {
 initMap();
 
 /**
- * This is where we kick everything off. We first grab satellite and methods
- * metadata from the API and then start grabbing the latest scenes.
+ * This is where we kick everything off. Start by grabbing the latest scenes.
  */
-getMethods(function () {
-  getSatellites(function () {
-  // Get the latest scenes to load into view
-    getLatestScenes(function (scenes) {
-      currentScenes = scenes;
-      playScenes();
-    });
-  });
+getLatestScenes(function (scenes) {
+  currentScenes = scenes;
+  playScenes();
 });
 
 /**
