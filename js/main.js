@@ -1,4 +1,4 @@
-/* global XMLHttpRequest, L */
+/* global XMLHttpRequest, L, moment */
 'use strict';
 
 /**
@@ -9,7 +9,7 @@ var scenesToFetch = 10;
 /**
  * A valid Mapbox token.
  */
-var accessToken = 'pk.eyJ1IjoiYXN0cm9kaWdpdGFsIiwiYSI6ImNVb1B0ZkEifQ.IrJoULY2VMSBNFqHLrFYew';
+var accessToken = 'INSERT_VALID_TOKEN';
 
 /**
  * How long to wait between switching published images? 30 seconds seems good.
@@ -164,8 +164,12 @@ var displayScene = function (scene) {
 var setInfo = function (scene) {
   document.getElementById('location').innerHTML = scene.sceneCenterLongitude +
     ', ' + scene.sceneCenterLatitude;
-  document.getElementById('satellite').innerHTML = scene.satellite;
-  document.getElementById('method').innerHTML = scene.process_method;
+  document.getElementById('satellite').innerHTML = scene.satellite.name;
+  document.getElementById('method').innerHTML = scene.process_method.name;
+  var date = scene.scene_id.substring(9, 16);
+  var mo = moment(date, 'YYYYDDD');
+  var dateString = mo.format('MMMM D, YYYY');
+  document.getElementById('date-captured').innerHTML = dateString;
 };
 
 /**
