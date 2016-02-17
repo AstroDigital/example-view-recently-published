@@ -1,3 +1,5 @@
+_Note that this code is for v1 of the platform which is being deprecated in favor of [v2](https://docs.astrodigital.com/v2.0)._
+
 # Most Recently Published Viewer
 
 ## Overview
